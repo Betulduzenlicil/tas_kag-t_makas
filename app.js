@@ -69,29 +69,26 @@ const enYuksekPuanAlan=()=>{
         resimSecmeDivi.textContent=""
         kazanan.textContent="Evet Başardın 30 puan senin";  
 
-        }
-       
-        
-        
+        }   
     } 
          
 }
 
   //? eşitlik durumu için
     const eşitlik=()=>{
-    kazanan.textContent="eşitsiniz"
+    kazanan.textContent="Eşitsiniz"
    
 }
 
 //? kazanma durumu
     const kazandın=()=>{
-    kazanan.textContent="Kazandınız"
+    kazanan.textContent="Sen Kazandın"
     kullanıcıPuan.textContent++
 
 }
 //?kaybetme durumu
     const kaybettin=()=>{
-    kazanan.textContent="Kaybettiniz"
+    kazanan.textContent="PC Kazandı"
     pcPuan.textContent++
 }
 
