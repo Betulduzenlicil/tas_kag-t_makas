@@ -6,6 +6,13 @@
 body{
     height: 100vh;
 }
+h1{
+    margin-bottom: 10px;
+    color: #b50e0e;
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
 .container{
     
     display: flex;

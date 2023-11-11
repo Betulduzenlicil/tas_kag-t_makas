@@ -76,19 +76,19 @@ const enYuksekPuanAlan=()=>{
 
   //? eşitlik durumu için
     const eşitlik=()=>{
-    kazanan.textContent="Eşitsiniz"
+    kazanan.textContent="Eşitsiniz PUAN YOK"
    
 }
 
 //? kazanma durumu
     const kazandın=()=>{
-    kazanan.textContent="Sen Kazandın"
+    kazanan.textContent="Sen  +3 PUAN Kazandın"
     kullanıcıPuan.textContent++
 
 }
 //?kaybetme durumu
     const kaybettin=()=>{
-    kazanan.textContent="PC Kazandı"
+    kazanan.textContent="PC +3 PUAN Kazandı"
     pcPuan.textContent++
 }
 
