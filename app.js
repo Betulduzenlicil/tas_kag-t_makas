@@ -7,7 +7,11 @@ const resimSecmeDivi=document.querySelector(".selection");
 const kazanan=document.querySelector(".message")
 const pcPuan=document.querySelector("#pc-score")
 const kullanıcıPuan=document.querySelector("#user-score")
-const modul=document.querySelector(".modal-card")
+const modalCardSection = document.querySelector(".modal-card")
+const finalMessagePar = document.getElementById("final-message")
+const playAgainBtn = document.getElementById("play-again")
+const pcTopScore=document.querySelector("#top-score2")
+const userTopScore=document.querySelector("#top-score1")
 
 //! local değişken
 
@@ -15,6 +19,12 @@ let kullanıcınınSectigiResim=document.createElement("img")
 let pcninSectigiResim=document.createElement("img")
 let pcRandom
 let pcArr=["taş", "kağıt", "makas"]
+const YELLOW = "#ffc538"
+const RED = "#fb778b"
+const GREEN = "#5ab7ac"
+// localStorage.setItem("pcTopScore")
+// localStorage.setItem("userTopScore")
+
 
 //! ==========events==========
 
@@ -26,6 +36,19 @@ resimSecmeDivi.addEventListener('click', (e) => {
     pcSelection() 
   }  
 });
+
+playAgainBtn.addEventListener("click", () => {
+    // modalCardSection.classList.toggle("show")
+    // modalCardSection.classList.toggle("remove")
+    modalCardSection.style.display = "none"
+    pcPuan.textContent="0"
+    kullanıcıPuan.textContent="0"
+    window.location.reload()
+    zirve()
+    enYuksekPuanAlan()
+   
+  })
+
 
 //! ===========fonksıyonlar===============
 //*bilgisayarın secimi için
@@ -60,23 +83,19 @@ const kazananıBul = () => {
 
   
 }
+
+//! sonuç tablosu
 const enYuksekPuanAlan=()=>{
     if (pcPuan.textContent === "30" || kullanıcıPuan.textContent === "30" ) {
-        if (pcPuan.textContent === "30") {
-            resimSecmeDivi.textContent=""
-            kazanan.textContent="🚫🚫🚫Unfortunately you couldn't pass your opponent🚫🚫🚫"; 
-            kazanan.style.backgroundColor="black" 
-            kazanan.style.transform="scale(1)" 
-        }else if(kullanıcıPuan.textContent === "30"){
-        resimSecmeDivi.textContent=""
-        kazanan.textContent="🏅🏅🏅You did it, 30 points are yours🏅🏅🏅";
-        kazanan.style.backgroundColor="red"
-        kazanan.style.transform="scale(1)" 
-
-        }   
+        kazanan.style.display="none";
+        openModal()
+        zirve()
     } 
-         
+
+   
 }
+
+
 
   //? eşitlik durumu için
     const eşitlik=()=>{
@@ -96,9 +115,40 @@ const enYuksekPuanAlan=()=>{
     pcPuan.textContent++
 }
 
-
-window.onload = function() {
+//* müzik ekleme
+    window.onload = ()=> {
     let videoIframe = document.querySelector('iframe');
     videoIframe.src += "&autoplay=1";
     videoIframe.classList.remove('hidden');
 };
+
+const openModal = () => {
+    modalCardSection.classList.add("show")
+  
+    if (kullanıcıPuan.textContent === "30") {
+      //? eger kullanici 10 puana usalti ise kullanici kazanmistir.
+      finalMessagePar.textContent = "🏅You Win🏅"
+      document.querySelector(".modal").style.backgroundColor = GREEN
+      playAgainBtn.style.color = GREEN
+    } else if (pcPuan.textContent === "30") {
+      //? eger pc 10 puana ulasti ise pc kazanmistir.
+      finalMessagePar.textContent = "☹️You Lost☹️"
+      document.querySelector(".modal").style.backgroundColor = RED
+      playAgainBtn.style.color = RED
+    }
+  }
+  
+
+  const zirve=()=>{
+    if (pcPuan.textContent === "30") {
+        pcTopScore.textContent++
+        // localStorage.getItem("pcTopScore")
+        openModal()
+    
+   } else if (kullanıcıPuan.textContent === "30") {
+        userTopScore.textContent++
+        // localStorage.getItem("pcTopScore")
+        openModal()
+    
+   } 
+}
