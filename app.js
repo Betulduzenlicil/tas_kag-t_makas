@@ -64,10 +64,14 @@ const enYuksekPuanAlan=()=>{
     if (pcPuan.textContent === "30" || kullanıcıPuan.textContent === "30" ) {
         if (pcPuan.textContent === "30") {
             resimSecmeDivi.textContent=""
-            kazanan.textContent="Malesef Pc yi geçemedin";  
+            kazanan.textContent="🚫🚫🚫Unfortunately you couldn't pass your opponent🚫🚫🚫"; 
+            kazanan.style.backgroundColor="black" 
+            kazanan.style.transform="scale(1)" 
         }else if(kullanıcıPuan.textContent === "30"){
         resimSecmeDivi.textContent=""
-        kazanan.textContent="Evet Başardın 30 puan senin";  
+        kazanan.textContent="🏅🏅🏅You did it, 30 points are yours🏅🏅🏅";
+        kazanan.style.backgroundColor="red"
+        kazanan.style.transform="scale(1)" 
 
         }   
     } 
@@ -76,20 +80,25 @@ const enYuksekPuanAlan=()=>{
 
   //? eşitlik durumu için
     const eşitlik=()=>{
-    kazanan.textContent="Eşitsiniz PUAN YOK"
+    kazanan.textContent="🟰No one wins equal points🟰"
    
 }
 
 //? kazanma durumu
     const kazandın=()=>{
-    kazanan.textContent="Sen  +3 PUAN Kazandın"
+    kazanan.textContent="👏Bravo, you earned 3 points👏"
     kullanıcıPuan.textContent++
 
 }
 //?kaybetme durumu
     const kaybettin=()=>{
-    kazanan.textContent="PC +3 PUAN Kazandı"
+    kazanan.textContent="😒Sorry, your opponent won 3 points😒"
     pcPuan.textContent++
 }
 
 
+window.onload = function() {
+    let videoIframe = document.querySelector('iframe');
+    videoIframe.src += "&autoplay=1";
+    videoIframe.classList.remove('hidden');
+};
