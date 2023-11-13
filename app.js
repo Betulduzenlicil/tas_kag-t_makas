@@ -44,11 +44,18 @@ playAgainBtn.addEventListener("click", () => {
     pcPuan.textContent="0"
     kullanıcıPuan.textContent="0"
     window.location.reload()
-    zirve()
+    localStorage.setItem("userTopScore", userTopScore.textContent)
+    localStorage.setItem("pcTopScore",pcTopScore.textContent)
+  
     enYuksekPuanAlan()
+  
    
   })
-
+  window.addEventListener("load",()=>{
+    pcTopScore.innerText = Number(localStorage.getItem("pcTopScore")) 
+    userTopScore.textContent = Number(localStorage.getItem("userTopScore")) 
+   
+})
 
 //! ===========fonksıyonlar===============
 //*bilgisayarın secimi için
@@ -90,8 +97,9 @@ const enYuksekPuanAlan=()=>{
         kazanan.style.display="none";
         openModal()
         zirve()
+       
     } 
-
+   
    
 }
 
@@ -126,12 +134,10 @@ const openModal = () => {
     modalCardSection.classList.add("show")
   
     if (kullanıcıPuan.textContent === "30") {
-      //? eger kullanici 10 puana usalti ise kullanici kazanmistir.
       finalMessagePar.textContent = "🏅You Win🏅"
       document.querySelector(".modal").style.backgroundColor = GREEN
       playAgainBtn.style.color = GREEN
     } else if (pcPuan.textContent === "30") {
-      //? eger pc 10 puana ulasti ise pc kazanmistir.
       finalMessagePar.textContent = "☹️You Lost☹️"
       document.querySelector(".modal").style.backgroundColor = RED
       playAgainBtn.style.color = RED
@@ -141,14 +147,15 @@ const openModal = () => {
 
   const zirve=()=>{
     if (pcPuan.textContent === "30") {
-        pcTopScore.textContent++
-        // localStorage.getItem("pcTopScore")
-        openModal()
+        pcTopScore.textContent===pcTopScore.textContent++
+       localStorage.setItem("pcTopScore",pcTopScore.textContent)
+        
     
    } else if (kullanıcıPuan.textContent === "30") {
-        userTopScore.textContent++
-        // localStorage.getItem("pcTopScore")
-        openModal()
+        userTopScore.textContent===userTopScore.textContent++
+        localStorage.setItem("userTopScore", userTopScore.textContent)
+       
+        
     
    } 
 }
